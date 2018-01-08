@@ -27,7 +27,7 @@ object AlpineRConnectorBuild extends Build {
                       "Sonatype releases" at "https://oss.sonatype.org/content/repositories/releases/",
                       "Spray Repo" at "http://repo.spray.io",
                       "spray nightlies repo" at "http://nightlies.spray.io"),
-    libraryDependencies += "org.scalatest" % "scalatest_2.10" % "2.1.6" % "test",
+    libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.2" % Test,
     javacOptions ++= Seq("-source", "1.6", "-target", "1.6"),
     scalacOptions ++= Seq("-unchecked", "-deprecation"),
     shellPrompt <<= name(name => { state: State =>
@@ -98,7 +98,7 @@ object AlpineRConnectorBuild extends Build {
         art.copy(`classifier` = Some("assembly"))
      })
     .settings(libraryDependencies ++= Seq(
-      "co.paralleluniverse" % "quasar-core" % "0.6.1",
+      "co.paralleluniverse" % "quasar-core" % "0.7.7",
       "ch.qos.logback" % "logback-classic" % "1.0.9",
       "org.mockito" % "mockito-all" % "1.9.5" % "test",
       "commons-io"                 %     "commons-io"                    %    "2.4"

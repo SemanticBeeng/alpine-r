@@ -15,33 +15,29 @@
 
 package com.alpine.rconnector.server
 
-import com.alpine.rconnector.messages._
+import java.io.{File, FileOutputStream}
+import java.security.KeyStore
+import java.util.{List => JList, Map => JMap}
 
 import akka.AkkaException
 import akka.actor.Actor
 import akka.event.Logging
-import java.io.{ StringWriter, FileInputStream, FileOutputStream, File }
-import java.security.{ SecureRandom, KeyStore }
-import java.util.{ List => JList, Map => JMap }
-import javax.net.ssl.{ TrustManager, KeyManager, SSLContext }
+import com.alpine.rconnector.messages._
+import com.alpine.rconnector.server.RServeMain.autoDeleteTempFiles
 import org.apache.commons.io.IOUtils
-import org.apache.commons.lang3.StringEscapeUtils.escapeJava
-import org.apache.http.{ HttpStatus, HttpVersion }
-import org.apache.http.client.methods.{ HttpPost, HttpGet }
+import org.apache.http.client.methods.{HttpGet, HttpPost}
 import org.apache.http.conn.ConnectTimeoutException
-import org.apache.http.conn.ssl.{ SSLConnectionSocketFactory, SSLContexts, TrustSelfSignedStrategy }
-import org.apache.http.entity.{ ContentType, FileEntity }
-import org.apache.http.entity.mime.{ HttpMultipartMode, MultipartEntityBuilder }
-import org.apache.http.entity.mime.content.{ FileBody, StringBody }
-import org.apache.http.impl.client.{ CloseableHttpClient, HttpClients, HttpClientBuilder, LaxRedirectStrategy }
-import org.rosuda.REngine.REXP
+import org.apache.http.conn.ssl.{SSLConnectionSocketFactory, SSLContexts, TrustSelfSignedStrategy}
+import org.apache.http.entity.ContentType
+import org.apache.http.entity.mime.content.StringBody
+import org.apache.http.entity.mime.{HttpMultipartMode, MultipartEntityBuilder}
+import org.apache.http.impl.client.{CloseableHttpClient, HttpClients}
+import org.apache.http.{HttpStatus, HttpVersion}
 import org.rosuda.REngine.Rserve.RConnection
-import resource._
-import RServeMain.autoDeleteTempFiles
-import scala.collection.mutable.Map
+
 import scala.collection.JavaConversions._
 import scala.sys.process._
-import scala.util.{ Failure, Try, Success }
+import scala.util.{Failure, Success, Try}
 
 /**
  * This is the actor that establishes a connection to R via Rserve
