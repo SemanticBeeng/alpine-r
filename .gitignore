@@ -24,6 +24,9 @@ target/
 lib_managed/
 src_managed/
 project/boot/
+project/.boot/
+project/.ivy/
+project/build.properties
 project/plugins/project/
 
 .scala_dependencies

@@ -37,7 +37,7 @@ object RServeMain {
   val autoDeleteTempFiles = config.getBoolean("akka.rServe.autoDeleteTempFiles")
 
   def startup(): Unit = system.actorOf(Props[RServeMaster], "master")
-  def shutdown(): Unit = system.shutdown()
+  def shutdown(): Unit = Unit //@todo system.shutdown()
 
   def main(args: Array[String]): Unit = {
 

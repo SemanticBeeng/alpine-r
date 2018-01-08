@@ -53,7 +53,7 @@ object AlpineRConnectorBuild extends Build {
 
   lazy val akkaSettings = Seq(
   	libraryDependencies ++= {
-      val akkaVer = "2.3.11"
+      val akkaVer = "2.5.0"
       val apacheHttpVer = "4.3.3"
   	  Seq(
         "com.typesafe.akka"    %% "akka-actor"       % s"$akkaVer",
